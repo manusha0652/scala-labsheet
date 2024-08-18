@@ -1,16 +1,19 @@
-object PatternMatchingExample {
-  def main(args: Array[String]): Unit = {
-    println("Please enter an integer:")
+object question2{
 
-    val input = scala.io.StdIn.readLine().toInt
+    def main(args: Array[String]): Unit={
+        println("Enter the integer :")
+        val input=scala.io.StdIn.readLine()
+         val value=input.toInt
+           integer(value)
+         }
 
-    val categorize: Int => String = {
-      case x if x % 3 == 0 && x % 5 == 0 => "Multiple of Both Three and Five"
-      case x if x % 3 == 0 => "Multiple of Three"
-      case x if x % 5 == 0 => "Multiple of Five"
-      case _ => "Not a Multiple of Three or Five"
-    }
+       def integer(value:Int):Unit={
+           value match{
+            case d if d<=0 =>println("Negative/Zero" )
+            case d if d %2==0 =>println("Even number")
+            case d if d %2!=0 =>println("odd number")
+            case _ => println("invalid value")
+           }
+    }    
 
-    println(categorize(input))
-  }
 }

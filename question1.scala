@@ -1,36 +1,22 @@
-object CaesarCipher {
-  def shiftChar(char: Char, shift: Int, base: Char): Char = {
-    ((char - base + shift) % 26 + base).toChar
-  }
+object practical9{
 
-  def encrypt(plainText: String, shift: Int): String = {
-    plainText.map {
-      case c if c.isUpper => shiftChar(c, shift, 'A')
-      case c if c.isLower => shiftChar(c, shift, 'a')
-      case c => c
-    }
-  }
+  def main(args: Array[String]): Unit={
+  println("enter the deposit money :")
+          val userinput=scala.io.StdIn.readLine()
+          val interestAmount =interest(userinput.toDouble)
+            println(s"the actual amount of interest is: $interestAmount")
+   }
 
-  def decrypt(cipherText: String, shift: Int): String = {
-    encrypt(cipherText, 26 - shift)
-  }
+      def interest( deposit:Double):Double = {
+          val interestRate:Double=>Double=deposit match{
+          case d if d<=20000=> _=> 0.02
+          case d if d<=200000=> _=> 0.04
+          case d if d<=2000000=> _=>0.035
+          case _=> _=>0.065
+       }
+           deposit *interestRate(deposit)
 
-  def cipher(data: String, shift: Int, func: (String, Int) => String): String = {
-    func(data, shift)
-  }
+      }
 
-  def main(args: Array[String]): Unit = {
-    print("Enter the message: ")
-    val message = scala.io.StdIn.readLine()
+  }  
 
-    print("Enter the shift value: ")
-    val shift = scala.io.StdIn.readInt()
-
-    val encrypted = cipher(message, shift, encrypt)
-    val decrypted = cipher(encrypted, shift, decrypt)
-    
-    println(s"Original: $message")
-    println(s"Encrypted: $encrypted")
-    println(s"Decrypted: $decrypted")
-  }
-}
